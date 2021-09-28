@@ -6,7 +6,7 @@ import {
   TextInput,
   StyleSheet,
   Image,
-  ToastAndroid
+  ToastAndroid,
 } from "react-native";
 import { Input, Button } from "react-native-elements";
 import apiKeys from "../config/key";
@@ -77,13 +77,23 @@ export default function LoginScreen({ navigation }) {
             {
               phone: number,
               id: uid,
-
+              shopName: "",
+              ownerName: "",
+              address: {
+                street: "",
+                city: "",
+                state: "",
+                country: "",
+                pin: "",
+                landmark: "",
+              },
+              verified: false,
             },
             { merge: true }
           )
           .then(() => {
-            ToastAndroid.show("Hello", ToastAndroid.SHORT)
-            console.log("Added");
+            ToastAndroid.show("Account created", ToastAndroid.SHORT);
+            navigation.navigate("Register", { data: { uid, number } });
           })
           .catch((error) => {
             console.log(error);

@@ -12,6 +12,9 @@ import MainScreen from "./MainScreen";
 import MedicineScreen from "./MedicineScreen";
 import ProfileScreen from "./ProfileScreen";
 import OrderBookScreen from "./OrderBookScreen";
+import MedicineDetailScreen from "./MedicineDetailScreen";
+import MedicineNav from "./MedicineNav";
+
 import { COLORS } from "../constants";
 
 const Tab = createBottomTabNavigator();
@@ -36,8 +39,8 @@ export default function MainNav() {
         }}
       />
       <Tab.Screen
-        name="MedicineScreen"
-        component={MedicineScreen}
+        name="MedicineNav"
+        component={MedicineNav}
         options={{
           headerShown: false,
           tabBarLabel: "Medicine",

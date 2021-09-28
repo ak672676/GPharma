@@ -9,6 +9,7 @@ import apiKeys from "../config/key";
 
 import LoadingScreen from "./LoadingScreen";
 import LoginScreen from "./LoginScreen";
+import RegisterScreen from "./RegisterScreen";
 // import MainScreen from "./MainScreen";
 import MainNav from "./MainNav";
 
@@ -32,6 +33,11 @@ export default function AuthNav() {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
