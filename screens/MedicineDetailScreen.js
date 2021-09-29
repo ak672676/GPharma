@@ -1,77 +1,108 @@
 import React, { useState, useCallback, useRef } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { Image, Divider, Icon } from "react-native-elements";
 import Carousel from "react-native-snap-carousel";
 
 import { COLORS, SIZES, FONTS, icons } from "../constants";
 
-const exampleItems = [
-  {
-    title: "Item 1",
-    text: "Text 1",
-  },
-  {
-    title: "Item 2",
-    text: "Text 2",
-  },
-  {
-    title: "Item 3",
-    text: "Text 3",
-  },
-  {
-    title: "Item 4",
-    text: "Text 4",
-  },
-  {
-    title: "Item 5",
-    text: "Text 5",
-  },
-];
 export default function MedicineDetailScreen({ route, navigation }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [carouselItems, setCarouselItems] = useState(exampleItems);
+  const [carouselItems, setCarouselItems] = useState(
+    route.params.medicine.photos
+  );
+  const [medicine, setMedicine] = useState(route.params.medicine);
   const ref = useRef(null);
 
-  //   console.log(route.params.medicine);
+  console.log(route.params.medicine);
   const renderItem = useCallback(
     ({ item, index }) => (
       <View
         style={{
-          backgroundColor: "floralwhite",
-          borderRadius: 5,
-          height: 250,
-          padding: 50,
-          marginLeft: 25,
-          marginRight: 25,
+          height: SIZES.height * 0.35,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: COLORS.white,
         }}
       >
-        <Text style={{ fontSize: 30 }}>{item.title}</Text>
-        <Text>{item.text}</Text>
+        <Image source={{ uri: item }} style={{ width: 300, height: 300 }} />
       </View>
     ),
     []
   );
 
   return (
-    <View style={styles.container}>
-      <Text>Medicine Detail</Text>
-      <Carousel
-        layout="default"
-        ref={ref}
-        data={carouselItems}
-        sliderWidth={300}
-        itemWidth={300}
-        renderItem={renderItem}
-        onSnapToItem={(index) => setActiveIndex(index)}
-      />
-    </View>
+    <ScrollView style={styles.container}>
+      <View
+        style={{
+          height: SIZES.height * 0.45,
+          backgroundColor: COLORS.white,
+          borderRadius: 20,
+          paddingHorizontal: 10,
+          marginTop: 5,
+          backgroundColor: COLORS.white,
+        }}
+      >
+        <Carousel
+          layout="default"
+          ref={ref}
+          data={carouselItems}
+          sliderWidth={SIZES.width}
+          itemWidth={SIZES.width - 10}
+          renderItem={renderItem}
+          onSnapToItem={(index) => setActiveIndex(index)}
+          style={{ alignItems: "center", justifyContent: "center" }}
+        />
+
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: 5,
+          }}
+        >
+          <View style={{ flexDirection: "row" }}>
+            <Text style={{ fontFamily: "roboto-medium", fontSize: 30 }}>
+              {medicine.item.toUpperCase()}
+            </Text>
+            <Text
+              style={{
+                fontFamily: "roboto-medium",
+                fontSize: 30,
+                marginLeft: 5,
+                
+              }}
+            >
+              {medicine.category.toUpperCase()}
+            </Text>
+          </View>
+          <Icon name="plus" type="evilicon" color={COLORS.primary} size={45} />
+        </View>
+      </View>
+      {/* <Divider
+        style={{
+          backgroundColor: COLORS.gray,
+          height: 2,
+          marginHorizontal: 5,
+        }}
+      /> */}
+      <View
+        style={{
+          backgroundColor: COLORS.white,
+          marginTop: 10,
+          paddingHorizontal: 10,
+        }}
+      >
+        <Text>aaaaaa</Text>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.gray,
+    paddingHorizontal: 10,
   },
 });

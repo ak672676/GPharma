@@ -22,17 +22,14 @@ export default function MedicineScreen({ navigation }) {
     },
     {
       availableToCustomer: false,
-      company: "lupin",
+      company: "aristo",
       id: "qmIoHb9oMqascoh9zC1R",
-      item: "Rablet 20",
-      category: "tab",
-      mrp: 110.89,
-      rate: 89.09,
-      packing: "1*10",
-      photos: [
-        "https://newassets.apollo247.com/pub/media/catalog/product/r/a/rab1097_4.jpg",
-        "https://5.imimg.com/data5/NK/BA/JA/SELLER-91382494/rabiet-20-mg-500x500.jpg",
-      ],
+      item: "Aristosyme",
+      category: "syrup",
+      mrp: 100.0,
+      rate: 79.15,
+      packing: "200ml",
+      photos: ["https://meds.myupchar.com/16/157947_aristo.jpg"],
     },
     {
       availableToCustomer: true,
@@ -158,7 +155,7 @@ export default function MedicineScreen({ navigation }) {
           <ItemComponent medicine={med.item} navigation={navigation} />
         )}
         keyExtractor={(item, index) => item.id}
-        style={{width:"100%"}}
+        style={{ width: "100%" }}
       />
     </View>
   );
