@@ -1,7 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Provider } from "react-redux";
 
+import store from "./redux/store";
 import AuthNav from "./screens/AuthNav";
 
 import * as Font from "expo-font";
@@ -19,10 +21,12 @@ export default function App() {
   }, []);
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, paddingTop: Platform.OS === "android" ? 25 : 0 }}
-    >
-      <AuthNav />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView
+        style={{ flex: 1, paddingTop: Platform.OS === "android" ? 25 : 0 }}
+      >
+        <AuthNav />
+      </SafeAreaView>
+    </Provider>
   );
 }

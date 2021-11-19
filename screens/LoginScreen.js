@@ -45,7 +45,10 @@ export default function LoginScreen({ navigation }) {
       //   showMessage({
       //     text: "Verification code has been sent to your phone.",
       //   });
-      console.log("Verification code has been sent to your phone.");
+      console.log(
+        "Verification code has been sent to your phone. ",
+        verificationId
+      );
     } catch (err) {
       //   showMessage({ text: `Error: ${err.message}`, color: "red" });
       console.log(err);
